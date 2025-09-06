@@ -1,4 +1,4 @@
-// 부드러운 스크롤
+// 부드러운 스크롤 (이메일 링크 제외)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -12,19 +12,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 스크롤 시 헤더 스타일 변경
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.backdropFilter = 'blur(10px)';
-    } else {
-        header.style.background = '#fff';
-        header.style.backdropFilter = 'none';
-    }
+// 프로젝트 카드 호버 효과 개선
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-4px)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
 });
 
-// 페이지 로드 완료 시
+// 로딩 애니메이션
 document.addEventListener('DOMContentLoaded', function() {
+    // 페이지 로드 시 간단한 fade-in 효과
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s ease';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+    
     console.log('포트폴리오 사이트가 로드되었습니다!');
 });
